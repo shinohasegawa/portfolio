@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ポートフォリオ</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <h1><a href="index.html">portfolio</a></h1>             
+            </header>
+            <div id="bread">
+                <ul class="breadcrumb">
+                    <li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+                        <a href="index.html" itemprop="url">
+                        <span itemprop="title"><i class="fas fa-home"></i>ホーム</span>
+                        </a>
+                    </li>
+                    <li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+                        <span itemprop="title">WORK</span>
+                    </li>
+                </ul>
+            </div>
+            <article id="page">
+                <h2>WORK</h2>
+                <section>
+                    <h3>WEBDesign</h3>
+                    <hr>
+                    <p>【ROYAL PIRATEISSTUDIO A・CORE】</p>
+                </section>
+                <section>
+                    <img src="images/page/acoa_img.jpg" alt="acoa" width="1000">
+                </section>
+                <section>
+                    <script type="text/x-template" id="modal-template">
+                        <div name="modal">
+                            <div class="modal-mask">
+                                <div class="modal-wrapper">
+                                    <div class="modal-container">
+                                        
+                                            <slot name="header">
+                                                <img src="images/page/acoa_pc.png" alt="" width="250">
+                                            </slot>
+                                            <slot name="footer">
+                                                <button class="close-button" @click="$emit('close')">close</button>
+                                            </slot>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+                    <!-- app -->
+                    <div id="app">                             
+                        <div id="show-modal" @click="showModal = true"><img src="images/page/page_acoa.jpg" alt="">
+                        </div>
+                        <!-- use the modal component, pass in the prop -->
+                        <modal v-if="showModal" @close="showModal = false">
+                        </modal>
+                        <p>写真をクリックすると拡大します</p>
+                    </div>
+                </section>
+                <section>
+                    <p>東京都港区にあるピラティススタジオのリニューアルサイトを制作させていただきました。<br>
+                    スタジオのマネージャーと知り合いであり、プランニングから制作まで行わせていただきました。<br>
+                    ブログ更新を頻繁に行うとのことですので、WordPressで構築しています。</p>
+                    <dl class="note">
+                        <dt>制作時期：</dt>
+                        <dd>2018年10~11月</dd>
+                    </dl>
+                    <dl class="note">
+                        <dt>制作期間：</dt>
+                        <dd>約1ヶ月</dd>
+                    </dl>
+                </section>
+            </article>
+            <aside>
+                <section id="language">
+                    <p>WordPress/JavaScript/HTML5/Scss</p>
+　              </section>
+            </aside>           
+            <footer>
+                <p>&copy; 2019 hasegawashino portfolio</p>
+            </footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+        // register modal component
+            Vue.component('modal', {
+            template: '#modal-template'
+            })
+
+            // start app
+            new Vue({
+            el: '#app',
+            data: {
+                showModal: false
+            }
+            })
+        </script>
+    </body>
+</html>
